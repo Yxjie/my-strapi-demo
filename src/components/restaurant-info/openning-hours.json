@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_restaurant_info_openning_hours",
+  "info": {
+    "displayName": "Openning hours",
+    "icon": "plane",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "days": {
+      "type": "string"
+    },
+    "hours": {
+      "type": "string"
+    }
+  }
+}

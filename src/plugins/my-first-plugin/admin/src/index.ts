@@ -2,9 +2,13 @@ import { getTranslation } from './utils/getTranslation';
 import { PLUGIN_ID } from './pluginId';
 import { Initializer } from './components/Initializer';
 import { PluginIcon } from './components/PluginIcon';
+import { MyComp } from './components/MyComp';
+import { StrapiApp } from '@strapi/strapi/admin';
+
 
 export default {
   register(app: any) {
+    //注册admin pannel 左侧边栏
     app.addMenuLink({
       to: `plugins/${PLUGIN_ID}`,
       icon: PluginIcon,
@@ -17,14 +21,24 @@ export default {
 
         return App;
       },
+      // position:5
     });
 
+    // 注册插件
     app.registerPlugin({
       id: PLUGIN_ID,
       initializer: Initializer,
       isReady: false,
       name: PLUGIN_ID,
     });
+  },
+
+ bootstrap(app: any) {
+    console.log('bootstrap===============>');
+    
+    app.getPlugin('content-manager').injectComponent('editView', 'right-links', {
+       name: 'my-compo', Component:  MyComp
+      })
   },
 
   async registerTrads({ locales }: { locales: string[] }) {

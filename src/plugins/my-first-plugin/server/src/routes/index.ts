@@ -10,8 +10,8 @@ const routes = {
     routes: contentAPIRoutes,
   },
 
-  admin: {
-    type: 'admin',
+  'admin': {
+    type: 'content-api',
     routes: admin,
   }
 };

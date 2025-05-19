@@ -1,19 +1,14 @@
 import { Main } from '@strapi/design-system';
 import { useIntl } from 'react-intl';
-import { PLUGIN_ID } from '../pluginId';
+import { useFetchClient } from '@strapi/strapi/admin';
+const { get } = useFetchClient();
 
 import { getTranslation } from '../utils/getTranslation';
 
-import axios from 'axios';
-
 async function onclick() {
-  console.log(`/api/${PLUGIN_ID}/demo`)
-  // const base_url = env.host + ":"+env.port;
-  // console.log(base_url)
-  const res = await axios.get(`/api/${PLUGIN_ID}/demo`);
-  
-  // alert(`/api/${PLUGIN_ID}/demo`)
-}
+  const res = await get('api//demo');
+  alert(JSON.stringify(res))
+} 
 
 const HomePage = () => {
   const { formatMessage } = useIntl();
@@ -22,8 +17,7 @@ const HomePage = () => {
     <Main>
       <h1>Welcome to {formatMessage({ id: getTranslation('plugin.name') })}</h1>
       <h2>Hello Yxjie Welcome Strapi Plugin </h2>
-      
-      <button onClick={()=>onclick()}>hello world</button>
+      <button onClick={() => onclick}>hello world</button>
     </Main>
   );
 };
